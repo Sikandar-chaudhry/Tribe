@@ -1,6 +1,8 @@
 package com.example.tribe_1.data_structures;
 
-public class LinkedList<T>{
+import java.util.Iterator;
+
+public class LinkedList<T> implements Iterable<T>{
 
     Node head;
     public LinkedList() {
@@ -52,6 +54,25 @@ public class LinkedList<T>{
             current = current.next;
         }
         return totalNumberOfDataNodes;
+    } //End countTotal
+
+    public Iterator<T> iterator() {
+        return new LinkedListIterator();
     }
 
+    private class LinkedListIterator implements Iterator<T> {
+        private Node<T> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            T data = current.data;
+            current = current.next;
+            return data;
+        }
+    }
 }
