@@ -1,11 +1,15 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
-body, html{
-    padding: 0;
+.login-body{
     margin: 0;
-    font-family: Poly;
+    padding: 0;
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    font-family: Poly, serif;
 }
 .header{
     width: 1920px;
@@ -19,22 +23,160 @@ body, html{
     flex-shrink: 0;
     margin-left: 120px;
     margin-top: 13px;
-    margin-bottom: 13px;
 }
 .logo-name{
-    width: 126.953px;
+    width: 127px;
     height: 53px;
     flex-shrink: 0;
     margin-left: 15px;
     margin-top: 12px;
-    margin-bottom: 13px;
 }
 .coming-soon{
     color: #0500FF;
-    font-family: Poly;
+    font-family: Poly, serif;
     font-size: 64px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
-    margin: 330px 735px 0px 735px;
+    margin: 330px 735px 0 735px;
+}
+.parent-login{
+    background: url('../images/bgLogin.jpeg') lightgray 50% / cover no-repeat;
+    width: 1920px;
+    height: 1080px;
+    padding: 203px 578px 0 578px;
+}
+.parent-signup{
+    background: url('../images/bgLogin.jpeg') lightgray 50% / cover no-repeat;
+    width: 1920px;
+    height: 1080px;
+    padding: 92px 578px 0 578px;
+}
+.signin-block{
+    width: 764px;
+    height: 391px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background: #FFF;
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+}
+.signin-design{
+    height: 367.329px;
+    width: 307.203px;
+    flex-shrink: 0;
+    background-color: #BCACFC;
+    border-radius: 57px;
+    margin: 11px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signin-form{
+    width: 363px;
+    height: 328px;
+    flex-shrink: 0;
+    margin: 33px 0 30px 48px;
+}
+.signin-form h1{
+    color: #000;
+    font-family: Poly, serif;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.signin-form h2{
+    color: #000;
+    font-family: Poly,serif;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 13px;
+    margin-bottom: 13px;
+}
+.signin-form input{
+    width: 363px;
+    height: 40px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    border: 2px solid #929292;
+    background: #FFF;
+    padding: 15px;
+    font-family: Poly, serif;
+    font-size: 20px;
+}
+.signin-form input:focus {
+    border: 2px solid black; /* Change border color */
+    outline: none;
+}
+.signin-form button{
+    width: 156px;
+    height: 41px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #000;
+    color: white;
+    font-family: Poly, serif;
+    font-size: 24px;
+    margin-top: 19px;
+    margin-left: 100px;
+}
+.signin-form h3{
+    color: #000;
+    font-family: Poly, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    margin-top: 11px;
+    margin-left: 60px;
+    line-height: normal;
+}
+.signin-form h3 span{
+    color: #0500FF;
+    font-family: Poly, serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+.signin-form h3 span a{
+    text-decoration: none;
+    cursor: pointer;
+}
+.signin-form h3 span a:visited{
+    text-decoration: none;
+    color: #0500FF;
+}
+.signup-block{
+    width: 764px;
+    height:  676px;
+    flex-shrink: 0;
+    border-radius: 60px;
+    background: #FFF;
+    position: absolute;
+    display: flex;
+    justify-content: space-evenly;
+}
+.signup-design{
+    height: 649.688px;
+    width: 307.203px;
+    flex-shrink: 0;
+    background-color: #BCACFC;
+    border-radius: 57px;
+    margin: 11px 0 0 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.signup-design-imgDiv{
+    width: 258px;
+    height: 375px;
+    flex-shrink: 0;
+    border-radius: 42px;
+    background: url('../images/like.svg'), lightgray 50% / cover no-repeat;
 }
