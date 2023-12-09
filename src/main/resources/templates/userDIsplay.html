@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
-    <link rel="icon" href="/static/images/logo.svg" type="image/svg+xml">
+    <link rel="icon" href="/css/logo.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>
@@ -36,7 +36,7 @@
     <br>
     <ul>
         <th:block th:each="user : ${listUsers}">
-            <li>[[${user.username}]]</li>
+            <li th:text="${user.username + ' , ' + user.email}"></li>
         </th:block>
     </ul>
 </body>
