@@ -20,6 +20,8 @@ public class User {
     private String last_name;
     // Add other relevant user attributes
 
+    private boolean isAuthenticated = false;
+
     public User(Integer userId,String email, String username, String password) {
         this.email = email;
         this.userId = userId;
@@ -94,6 +96,14 @@ public class User {
 
     public void setLast_name(String last_name) {
         this.last_name = last_name;
+    }
+
+    public boolean isAuthenticated() {
+        return isAuthenticated;
+    }
+
+    public void setAuthenticated(boolean authenticated) {
+        isAuthenticated = authenticated;
     }
 
     @Override
