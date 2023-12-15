@@ -16,6 +16,9 @@
     height: 78px;
     flex-shrink: 0;
     background: #BCACFC;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
 }
 .logo{
     width: 59px;
@@ -30,6 +33,7 @@
     flex-shrink: 0;
     margin-left: 15px;
     margin-top: 12px;
+    margin-right: 1342px;
 }
 .coming-soon{
     color: #0500FF;
@@ -179,4 +183,44 @@
     flex-shrink: 0;
     border-radius: 42px;
     background: url('../images/like.svg'), lightgray 50% / cover no-repeat;
+}
+.sign-out-btn{
+    width: 137px;
+    height: 49px;
+    background-color: #000;
+    border-radius: 8px;
+    padding: 11px 25px 12px 26px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+.sign-out-link{
+    color: #FFF;
+    font-family: Roboto, Arial, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-decoration: none;
+
+}
+.sign-out-btn:hover{
+    background-color: #595959;
+}
+.sign-out-btn:hover .sign-out-link{
+    font-size: 19px;
+    transition: font-size 0.2s ease-in-out;
+}
+
+.user-navbar{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 120px;
+    width: 1920px;
+    align-items: center;
+    height: 78px;
+    background-color: #FFFFFF;
+    border-bottom: 1px solid #000000;
+}
+.user-navbar h2{
+    font-size: 26px;
+    font-family: Roboto, Arial, sans-serif;
 }
