@@ -36,11 +36,11 @@
         <div class="signin-form">
             <h1>Sign In</h1>
             <div>
-                <form method="post">
+                <form method="post" th:action="@{/login}" >
                     <h2>Email</h2>
-                    <input type="email" required>
+                    <input type="email"  name="email" required minlength="8" maxlength="45" autofocus>
                     <h2>Password</h2>
-                    <input type="password" required>
+                    <input type="password" name="password" required minlength="8" maxlength="20">
                     <button type="submit">Sign In</button>
                 </form>
                 <h3>Don't have account? <span><a th:href="@{/signup}">Sign Up</a></span></h3>
