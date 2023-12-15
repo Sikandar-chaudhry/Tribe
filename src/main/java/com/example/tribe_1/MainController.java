@@ -1,24 +1,24 @@
 package com.example.tribe_1;
 
-import com.example.tribe_1.data_structures.LinkedList;
-import com.example.tribe_1.user.User;
-import com.example.tribe_1.user.UserStorage;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
 
     @GetMapping("/signin")
-    public String showLandingPage(){
+    public String showLandingPage(HttpSession session) {
+        session.invalidate();
         return "signin";
     }
 
     @GetMapping("/signup")
-    public String showSignUpPage(){
+    public String showSignUpPage() {
         return "signup";
     }
+
+}
 
 //    @GetMapping("/users")
 //    public String displayUsers(Model model){
@@ -36,5 +36,3 @@ public class MainController {
 //        return "userDisplay";
 //    }
 
-
-}
