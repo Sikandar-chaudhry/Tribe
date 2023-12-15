@@ -19,8 +19,54 @@ public class UserService {
         LinkedList<User> userList = userStorage.getUsers();
         return userList;
     }
+
+    public boolean user_is_authenticated(String email, String password){
+        Iterable<User> users = repo.findAll();
+        boolean found = false;
+        UserStorage userStorage = new UserStorage();
+        for (User user: users){
+            userStorage.addUser(user);
+        }
+        LinkedList<User> userList = userStorage.getUsers();
+        for (User user: userList){
+            if (user.getEmail().equals(email)){
+                if(user.getPassword().equals(password)){
+                    found = true;
+                    user.setAuthenticated(true);
+                }
+            }
+        }
+        return found;
+    };
+    public User getUserByEmailAndPassword(String email, String password){
+        Iterable<User> users = repo.findAll();
+        User foundUser = null;
+        UserStorage userStorage = new UserStorage();
+        for (User user: users){
+            userStorage.addUser(user);
+        }
+        LinkedList<User> userList = userStorage.getUsers();
+        for (User user: users){
+            if (user.getEmail().equals(email)){
+                if(user.getPassword().equals(password)){
+                    foundUser = user;
+                    user.setAuthenticated(true);
+                }
+            }
+        }
+        return foundUser;
+    }
+
+
     public void save(User user){
         repo.save(user);
+        Iterable<User> users = repo.findAll();
+        boolean found = false;
+        UserStorage userStorage = new UserStorage();
+        for (User eachUser: users){
+            userStorage.addUser(eachUser);
+        }
+        LinkedList<User> userList = userStorage.getUsers();
     }
 
     public User get(Integer id) throws UserNotFoundException {
