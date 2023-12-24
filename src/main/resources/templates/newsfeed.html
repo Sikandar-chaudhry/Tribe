@@ -35,13 +35,22 @@
         <h2 th:text="${user.first_name + ' '+ user.last_name}"></h2>
         <button class="sign-out-btn"><a th:href="@{/signout}" class="sign-out-link">Sign Out</a></button>
     </div>
+
+    <div class="write-post-div">
+        <form method="post" th:action="@{/user/post}" th:object="${post}">
+            <input placeholder="What's on your mind?" type="text" th:field="*{postText}">
+            <button class="post-button" type="submit">Post</button>
+        </form>
+    </div>
+
     <p class="coming-soon">News Feed</p>
-    <ul>
-        <li th:text="${user.username}"></li>
-        <li th:text="${user.email}"></li>
-        <li th:text="${user.first_name}"></li>
-        <li th:text="${user.last_name}"></li>
-    </ul>
+    <div>
+        <div th:each="post : ${userPosts}">
+            <p th:text="${post.getAuthor().getUsername()}"></p>
+            <p th:text="${post.getPostDate()}"></p>
+            <p th:text="${post.getPostText()}"></p>
+        </div>
+    </div>
 </div>
 <div th:unless="${user != null}">
     <!-- Handle the case when 'user' is null (user is not authenticated) -->
