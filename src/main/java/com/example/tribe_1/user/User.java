@@ -1,7 +1,8 @@
 package com.example.tribe_1.user;
 
-import jakarta.persistence.Entity;
+import com.example.tribe_1.data_structures.Stack;
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,24 +21,9 @@ public class User {
     private String last_name;
     // Add other relevant user attributes
 
+    @Transient
+    private Stack<Post> posts = new Stack<>(50);
     private boolean isAuthenticated = false;
-
-    public User(Integer userId,String email, String username, String password) {
-        this.email = email;
-        this.userId = userId;
-        this.username = username;
-        this.password = password;
-        // Initialize other attributes as needed
-    }
-
-    public User(Integer userId, String username, String email, String password, String first_name, String last_name) {
-        this.userId = userId;
-        this.username = username;
-        this.email = email;
-        this.password = password;
-        this.first_name = first_name;
-        this.last_name = last_name;
-    }
 
     public User(String username, String email, String password, String first_name, String last_name) {
         this.username = username;
@@ -45,6 +31,19 @@ public class User {
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
+    }
+    public void addPost(Post post) {
+        posts.push(post);
+    }
+
+    public void removePost(Post post) {
+        posts.delete(post);
+        post.setAuthor(null);
+    }
+
+
+    public void setPosts(Stack<Post> posts) {
+        this.posts = posts;
     }
 
     public User() {}
@@ -58,7 +57,7 @@ public class User {
     }
 
     // Getters and Setters
-    public long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
