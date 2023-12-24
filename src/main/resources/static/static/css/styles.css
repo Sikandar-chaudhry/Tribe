@@ -217,10 +217,51 @@
     width: 1920px;
     align-items: center;
     height: 78px;
+    margin-top: 78px;
     background-color: #FFFFFF;
     border-bottom: 1px solid #000000;
 }
 .user-navbar h2{
     font-size: 26px;
     font-family: Roboto, Arial, sans-serif;
+}
+.write-post-div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+.write-post-div .post-button{
+    width: 80px;
+    font-size: 18px;
+    color: white;
+    height: 37px;
+    background-color: #000;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+.write-post-div .post-button:hover{
+    background-color: #595959;
+    font-size: 17px;
+}
+.write-post-div input{
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    width: 230px;
+    margin-right: 5px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(0, 0, 0);
+    background: #dee1e2;
+    height: 40px;
+    :hover {
+        border-color: #ccc;
+    }
+
+}
+.write-post-div form input:focus{
+        border:2px solid #0500FF;
+        background: #fff;
 }
