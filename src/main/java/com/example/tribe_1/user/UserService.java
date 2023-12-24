@@ -4,12 +4,14 @@ import com.example.tribe_1.data_structures.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 @Service
 public class UserService {
     @Autowired private UserRepository repo;
+    @Autowired private PostRepository postRepo;
     public LinkedList<User> listAll(){
         Iterable<User> users = repo.findAll();
         UserStorage userStorage = new UserStorage();
@@ -55,6 +57,27 @@ public class UserService {
             }
         }
         return foundUser;
+    }
+    public List<Post> getPostsByUserId(Integer userId) {
+        Optional<User> userOptional = repo.findById(userId);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            PostStorage postStorage = new PostStorage();
+            List<Post> posts = postRepo.findByAuthor(user);
+            for (Post post: posts){
+                postStorage.addInStack(post);
+            }
+            List<Post> listFormedByStack = new ArrayList<>();
+            while(!postStorage.isEmpty()){
+                listFormedByStack.add(postStorage.getFromStack());
+            }
+            return listFormedByStack;
+
+        } else {
+            // Handle the case where the user with the given ID is not found
+            return Collections.emptyList();
+        }
     }
 
 
