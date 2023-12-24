@@ -1,7 +1,6 @@
 package com.example.tribe_1;
 
 import com.example.tribe_1.data_structures.LinkedList;
-import com.example.tribe_1.user.AuthenticationService;
 import com.example.tribe_1.user.User;
 import com.example.tribe_1.user.UserRepository;
 import com.example.tribe_1.user.UserStorage;
@@ -11,8 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.annotation.Rollback;
-
-import java.util.ArrayList;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
