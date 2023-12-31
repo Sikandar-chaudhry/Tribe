@@ -12,6 +12,11 @@ import java.util.Optional;
 public class UserService {
     @Autowired private UserRepository repo;
     @Autowired private PostRepository postRepo;
+    @Autowired private CommentRepository commentRepo;
+
+    public UserService() {
+    }
+
     public LinkedList<User> listAll(){
         Iterable<User> users = repo.findAll();
         UserStorage userStorage = new UserStorage();
@@ -58,6 +63,24 @@ public class UserService {
         }
         return foundUser;
     }
+    public void save(User user){
+        repo.save(user);
+        Iterable<User> users = repo.findAll();
+        boolean found = false;
+        UserStorage userStorage = new UserStorage();
+        for (User eachUser: users){
+            userStorage.addUser(eachUser);
+        }
+        LinkedList<User> userList = userStorage.getUsers();
+    }
+
+    public User get(Integer id) throws UserNotFoundException {
+        Optional<User> result = repo.findById(id);
+        if(result.isPresent()){
+            return result.get();
+        }
+        throw new UserNotFoundException("Could not find any user with this ID : "+id);
+    }
     public List<Post> getPostsByUserId(Integer userId) {
         Optional<User> userOptional = repo.findById(userId);
 
@@ -79,25 +102,25 @@ public class UserService {
             return Collections.emptyList();
         }
     }
-
-
-    public void save(User user){
-        repo.save(user);
-        Iterable<User> users = repo.findAll();
-        boolean found = false;
-        UserStorage userStorage = new UserStorage();
-        for (User eachUser: users){
-            userStorage.addUser(eachUser);
+    public List<Comment> getCommentByPostID(long postID){
+        Optional<Post> postOptional = postRepo.findById(postID);
+        Optional<User> userOptional = repo.findById(postOptional.get().getAuthor().getUserId());
+        if (postOptional.isPresent()) {
+            Post post = postOptional.get();
+            CommentStorage commentStorage = new CommentStorage();
+            List<Comment> commentList = commentRepo.findByPost_PostId(post.getPostId());
+            for (Comment comment: commentList){
+                commentStorage.addInStack(comment);
+            }
+            List<Comment> listFormedByStack = new ArrayList<>();
+            while(!commentStorage.isEmpty()){
+                listFormedByStack.add(commentStorage.getFromStack());
+            }
+            return listFormedByStack;
+        } else {
+            // Handle the case where the user with the given ID is not found
+            return Collections.emptyList();
         }
-        LinkedList<User> userList = userStorage.getUsers();
-    }
-
-    public User get(Integer id) throws UserNotFoundException {
-        Optional<User> result = repo.findById(id);
-        if(result.isPresent()){
-            return result.get();
-        }
-        throw new UserNotFoundException("Could not find any user with this ID : "+id);
     }
 
 
