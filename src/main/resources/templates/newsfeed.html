@@ -32,7 +32,7 @@
 </header>
 <div th:if="${user != null}">
     <div class="user-navbar">
-        <h2 th:text="${user.first_name + ' '+ user.last_name}"></h2>
+        <h2 th:text="${user.first_name != null and user.last_name != null ? user.first_name + ' ' + user.last_name : 'Unknown User'}"></h2>
         <button class="sign-out-btn"><a th:href="@{/signout}" class="sign-out-link">Sign Out</a></button>
     </div>
 
@@ -42,13 +42,34 @@
             <button class="post-button" type="submit">Post</button>
         </form>
     </div>
+    <hr>
 
-    <p class="coming-soon">News Feed</p>
-    <div>
-        <div th:each="post : ${userPosts}">
-            <p th:text="${post.getAuthor().getUsername()}"></p>
-            <p th:text="${post.getPostDate()}"></p>
-            <p th:text="${post.getPostText()}"></p>
+    <div class="post-parent-div">
+        <br>
+        <div th:each="post : ${userPosts}" class="post-div">
+            <div class="first-part">
+            <p th:text="'@' + ${post.author.username}"></p>
+            <p class="date" th:text="${post.getPostDate().getDayOfMonth()} +' '+ ${post.getPostDate().getMonth()}+', '+${post.getPostDate().getYear()}"></p>
+            </div>
+            <hr>
+            <div class="second-part">
+                <p th:text="${post.getPostText()}"></p>
+            </div>
+            <hr>
+            <div class="comment-input">
+                <form method="post" th:action="@{/user/comment}" th:object="${comment}">
+                    <input type="hidden" name="postId" th:value="${post.postId}" />
+                    <input class="comment-text-input" placeholder="Post comment" type="text" th:field="*{commentText}">
+                    <button class="comment-button" type="submit">Post</button>
+                </form>
+            </div>
+            <hr>
+            <div class="view-comment-div">
+                <form class="comment-form" method="post" th:action="@{/post}">
+                    <input type="hidden" name="postId" th:value="${post.postId}" />
+                    <button type="submit"><p>View Comments</p></button>
+                </form>
+            </div>
         </div>
     </div>
 </div>
