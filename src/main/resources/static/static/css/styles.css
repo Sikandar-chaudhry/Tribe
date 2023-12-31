@@ -222,14 +222,14 @@
     border-bottom: 1px solid #000000;
 }
 .user-navbar h2{
-    font-size: 26px;
-    font-family: Roboto, Arial, sans-serif;
+    font-size: 28px;
 }
 .write-post-div{
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 10px;
+    margin-bottom: 10px;
 }
 .write-post-div .post-button{
     width: 80px;
@@ -265,3 +265,166 @@
         border:2px solid #0500FF;
         background: #fff;
 }
+.post-parent-div{
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    border-bottom: 2px solid black;
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 22px;
+}
+.post-parent-div .post-div{
+    margin-bottom: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: 2px solid #BCACFC;
+    padding: 10px;
+    border-radius: 15px;
+}
+.post-div .first-part{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.post-div .first-part .date{
+    font-size: 18px;
+}
+.post-div .second-part{
+    padding: 10px;
+    font-size: 20px;
+}
+.main-post-div{
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    font-size: 22px;
+    font-family: Poly, serif;
+    width: 1500px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 2px solid #BCACFC;
+    border-radius: 15px;
+}
+.main-post-div .upper-post-part{
+    display: flex;
+    padding: 10px 10px;
+    justify-content: space-between;
+}
+.main-post-div .lower-post-part{
+    padding: 10px 10px;
+}
+.main-post-div .comment-input-form{
+    padding: 10px 10px;
+}
+.main-post-div .comment-input-form input{
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    width: 230px;
+    margin-right: 5px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(0, 0, 0);
+    background: #dee1e2;
+    height: 40px;
+    :hover {
+        border-color: #ccc;
+    }
+    :focus{
+        border-color: #BCACFC;
+    }
+}
+.main-post-div .comment-input-form .comment-button{
+    width: 100px;
+    height: 35px;
+    font-size: 20px;
+    font-family: Poly,serif;
+    color: white;
+    background-color: #000;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+.main-post-div .comment-input-form .comment-button:hover{
+    background-color: #595959;
+    font-size: 17px;
+}
+.main-post-div .upper-post-part .date{
+    font-size: 18px;
+}
+.comment-heading{
+    padding: 10px 10px;
+}
+.comment-section{
+    padding: 5px 50px;
+    border: 1px solid #BCACFC;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    border-radius: 15px;
+}
+.comment-input .comment-text-input{
+    font-size: 14px;
+    border-radius: 6px;
+    line-height: 1.5;
+    padding: 5px 10px;
+    width: 230px;
+    margin-right: 5px;
+    transition: box-shadow 100ms ease-in, border 100ms ease-in, background-color 100ms ease-in;
+    border: 2px solid #dee1e2;
+    color: rgb(0, 0, 0);
+    background: #dee1e2;
+    height: 30px;
+    :hover {
+        border-color: #ccc;
+    }
+    :focus{
+        border-color: #BCACFC;
+    }
+}
+.comment-input{
+    padding: 10px 10px;
+}
+.comment-input .comment-button{
+    width: 90px;
+    height: 30px;
+    font-size: 18px;
+    font-family: Poly,serif;
+    color: white;
+    border-color: #BCACFC;
+    background-color: #BCACFC;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+
+
+.comment-input .comment-button:hover{
+    background-color: black;
+    font-size: 17px;
+}
+.view-comment-div{
+    padding: 10px 10px;
+}
+.view-comment-div .comment-form button{
+    width: 150px;
+    height: 30px;
+    font-size: 18px;
+    font-family: Poly,serif;
+    color: white;
+    background-color: #000;
+    border-radius: 8px;
+    transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+}
+.view-comment-div .comment-form button:hover{
+    background-color: gray;
+    font-size: 17px;
+}
+
+
+
+
