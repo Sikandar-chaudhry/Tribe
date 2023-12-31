@@ -5,18 +5,18 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class UserController {
 
     @Autowired private UserService service;
     @Autowired private PostRepository postRepo;
+    @Autowired private CommentRepository commentRepo;
 
     @GetMapping("/users")
     public String showUserList(Model model){
@@ -52,6 +52,7 @@ public class UserController {
         model.addAttribute("userPosts", posts);
         model.addAttribute("username", userEmail);
         model.addAttribute("user", user);
+        model.addAttribute("comment", new Comment());
         return "newsfeed";
     }
     //Sign out
@@ -90,5 +91,44 @@ public class UserController {
         //Redirecting
         return "redirect:/newsfeed";
     }
+    @PostMapping("/user/comment")
+    public String newComment(@ModelAttribute Comment comment, @RequestParam("postId") Long postId, RedirectAttributes redirectAttributes, HttpSession session) {
 
+        User user = (User) session.getAttribute("user");
+
+        // Load the post from the database
+        Post post = postRepo.findById(postId).orElseThrow(() -> new IllegalArgumentException("Invalid post ID: " + postId));
+
+        comment.setAuthor(user);
+        post.addComment(comment);
+        comment.setPost(post);
+        // Save the updated post to the database
+        postRepo.save(post);
+
+        // Save the comment to the database
+        commentRepo.save(comment);
+
+        redirectAttributes.addFlashAttribute("message", "Comment uploaded successfully.");
+
+        // Redirecting
+        return "redirect:/newsfeed";
+    }
+    @RequestMapping("/post")
+    public String post(@RequestParam(name = "postId", required = false) Long postId, Model model) {
+        if (postId != null) {
+            Optional<Post> optionalPost = postRepo.findById(postId);
+
+            if (optionalPost.isPresent()) {
+                Post post = optionalPost.get();
+                List<Comment> comments = commentRepo.findByPost_PostId(postId);
+                model.addAttribute("comments", comments);
+                model.addAttribute("post", post);
+                model.addAttribute("comment", new Comment());
+                return "post"; // Make sure you have a view named "post.html" or adjust accordingly
+            }
+        }
+
+        // Handle the case where the postId is not provided or the post is not found
+        return "redirect:/newsfeed"; // You can customize this URL as needed
+    }
 }
