@@ -1,6 +1,7 @@
 package com.example.tribe_1.data_structures;
 
-import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Stack<T> {
 
@@ -69,6 +70,13 @@ public class Stack<T> {
             System.out.println(stackArray[i]);
         }
         System.out.println(); // Add a newline for readability
+    }
+    public List<T> toList() {
+        List<T> list = new ArrayList<>();
+        for (int i = 0; i <= top; i++) {
+            list.add(stackArray[i]);
+        }
+        return list;
     }
 
 }
